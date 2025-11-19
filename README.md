@@ -1,36 +1,157 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Lifegorithms Blog
 
-## Getting Started
+Personal blog by Arthur Papailhau, Software Engineer at Uber (Eats). Built with Next.js, MDX, and TailwindCSS.
 
-First, run the development server:
+## Features
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+- **Server-Side Rendering**: Built with Next.js 16 for optimal performance
+- **MDX Support**: Write blog posts with React components embedded in markdown
+- **Draft Mode**: Mark posts as drafts to hide them from public view
+- **Search**: Fast client-side search with keyboard shortcut (⌘K)
+- **Tags & Categories**: Organize posts with tags
+- **Reading Time**: Automatically calculated reading time for each post
+- **SEO Optimized**: Meta tags, Open Graph, and Twitter Cards
+- **Year-Based Organization**: Posts organized by year folders
+- **Responsive Design**: Beautiful UI with warm blue colors
+
+## Project Structure
+
+```
+lifegorithms/
+├── app/
+│   ├── blog/[year]/[slug]/
+│   │   └── page.tsx          # Individual blog post page
+│   ├── layout.tsx             # Root layout with navigation
+│   └── page.tsx               # Homepage with article list
+├── components/
+│   ├── footer.tsx             # Site footer
+│   ├── mdx-content.tsx        # MDX renderer with custom components
+│   ├── navigation.tsx         # Top navigation bar
+│   └── search.tsx             # Search functionality
+├── content/
+│   └── posts/
+│       ├── 2024/
+│       │   └── example-post.mdx
+│       ├── 2023/
+│       └── 2022/
+├── lib/
+│   └── posts.ts               # Blog post utilities
+└── utils/
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Writing Blog Posts
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Create a New Post
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+1. Create a new `.mdx` file in the appropriate year folder:
+   ```bash
+   content/posts/2024/my-new-post.mdx
+   ```
 
-## Learn More
+2. Add frontmatter at the top of the file:
+   ```yaml
+   ---
+   title: "Your Post Title"
+   emoji: "🎉"
+   date: "2024-01-15"
+   draft: false
+   tags: ["technology", "life"]
+   description: "A short description of your post"
+   ---
+   ```
 
-To learn more about Next.js, take a look at the following resources:
+3. Write your content using markdown or MDX
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Frontmatter Fields
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- `title` (required): Post title
+- `emoji` (optional): Emoji icon for the post
+- `date` (required): Publication date (YYYY-MM-DD)
+- `draft` (optional): Set to `true` to hide from public
+- `tags` (optional): Array of tags for categorization
+- `description` (optional): Short description for SEO and previews
 
-## Deploy on Vercel
+### MDX Features
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+You can use React components in your posts:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```mdx
+# My Post
+
+Here's some regular markdown text.
+
+<CustomComponent prop="value" />
+
+You can also use **bold**, *italic*, and [links](https://example.com).
+```
+
+## Development
+
+### Prerequisites
+
+- Node.js 18+
+- npm or yarn
+
+### Getting Started
+
+1. Install dependencies:
+   ```bash
+   npm install
+   ```
+
+2. Run the development server:
+   ```bash
+   npm run dev
+   ```
+
+3. Open [http://localhost:3000](http://localhost:3000)
+
+### Build for Production
+
+```bash
+npm run build
+npm start
+```
+
+## Configuration
+
+### Change Site Metadata
+
+Edit `app/layout.tsx` to update site title, description, and social media metadata.
+
+### Customize Colors
+
+The blog uses a warm blue color scheme. To customize:
+- Edit Tailwind classes in components
+- Main colors: `blue-50`, `blue-100`, `blue-400`, `blue-500`, `blue-600`, `blue-700`
+
+### Add Custom MDX Components
+
+Edit `components/mdx-content.tsx` to add or customize components available in MDX posts.
+
+## Deployment
+
+This blog can be deployed to any platform that supports Next.js:
+
+- **Vercel** (recommended): Automatic deployments with git integration
+- **Netlify**: Configure build command `npm run build` and publish directory `.next`
+- **Self-hosted**: Build and run with `npm run build && npm start`
+
+## Draft Mode
+
+Posts with `draft: true` in frontmatter won't appear on the public site. This allows you to work on posts over time.
+
+To preview drafts locally, you can temporarily modify `lib/posts.ts` to pass `includeDrafts: true`.
+
+## Search
+
+The search feature (⌘K or Ctrl+K) allows visitors to quickly find articles by:
+- Title
+- Description
+- Tags
+
+Search is implemented client-side for instant results.
+
+## License
+
+© 2024 Arthur Papailhau. All rights reserved.
