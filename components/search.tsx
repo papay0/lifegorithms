@@ -50,11 +50,11 @@ export function Search({ posts }: SearchProps) {
     return (
       <button
         onClick={() => setIsOpen(true)}
-        className="flex items-center gap-2 rounded-lg border border-gray-300 bg-white px-4 py-2 text-sm text-gray-600 hover:border-blue-400 transition-colors"
+        className="w-full flex items-center gap-2 rounded-lg backdrop-blur-sm bg-white/95 dark:bg-gray-900/95 border border-gray-200 dark:border-gray-700 px-4 py-3 text-sm text-gray-600 dark:text-gray-300 hover:border-blue-300 dark:hover:border-blue-600 transition-all shadow-sm"
       >
         <SearchIcon size={16} />
         <span>Search articles...</span>
-        <kbd className="ml-2 rounded bg-gray-100 px-2 py-0.5 text-xs">⌘K</kbd>
+        <kbd className="ml-auto rounded bg-gray-100 dark:bg-gray-800 px-2 py-0.5 text-xs">⌘K</kbd>
       </button>
     );
   }
@@ -65,23 +65,23 @@ export function Search({ posts }: SearchProps) {
       onClick={() => setIsOpen(false)}
     >
       <div
-        className="mx-auto mt-20 max-w-2xl"
+        className="mx-auto mt-20 max-w-2xl px-4"
         onClick={(e) => e.stopPropagation()}
       >
-        <div className="rounded-lg bg-white shadow-2xl">
-          <div className="flex items-center gap-3 border-b border-gray-200 p-4">
+        <div className="rounded-lg backdrop-blur-sm bg-white/95 dark:bg-gray-900/95 shadow-xl border border-gray-200 dark:border-gray-700">
+          <div className="flex items-center gap-3 border-b border-gray-200/50 dark:border-gray-700/50 p-4">
             <SearchIcon size={20} className="text-gray-400" />
             <input
               type="text"
               placeholder="Search articles..."
               value={query}
               onChange={(e) => setQuery(e.target.value)}
-              className="flex-1 bg-transparent text-lg outline-none"
+              className="flex-1 bg-transparent text-lg outline-none text-gray-900 dark:text-gray-100"
               autoFocus
             />
             <button
               onClick={() => setIsOpen(false)}
-              className="text-gray-400 hover:text-gray-600"
+              className="text-gray-400 hover:text-gray-600 dark:hover:text-gray-300"
             >
               <X size={20} />
             </button>
@@ -94,7 +94,7 @@ export function Search({ posts }: SearchProps) {
                   key={`${post.year}-${post.slug}`}
                   href={`/blog/${post.year}/${post.slug}`}
                   onClick={() => setIsOpen(false)}
-                  className="block rounded-lg p-3 hover:bg-blue-50 transition-colors"
+                  className="block rounded-lg p-3 hover:bg-blue-50/80 dark:hover:bg-gray-800/80 transition-colors"
                 >
                   <div className="flex items-start gap-3">
                     {post.emoji && (
@@ -103,15 +103,15 @@ export function Search({ posts }: SearchProps) {
                       </span>
                     )}
                     <div className="flex-1">
-                      <h3 className="font-medium text-gray-900">
+                      <h3 className="font-medium text-gray-900 dark:text-gray-100">
                         {post.title}
                       </h3>
                       {post.description && (
-                        <p className="mt-1 text-sm text-gray-600">
+                        <p className="mt-1 text-sm text-gray-600 dark:text-gray-400">
                           {post.description}
                         </p>
                       )}
-                      <div className="mt-1 text-xs text-gray-500">
+                      <div className="mt-1 text-xs text-gray-500 dark:text-gray-500">
                         {new Date(post.date).toLocaleDateString("en-US", {
                           month: "short",
                           day: "numeric",
@@ -126,13 +126,13 @@ export function Search({ posts }: SearchProps) {
           )}
 
           {query && results.length === 0 && (
-            <div className="p-8 text-center text-gray-500">
+            <div className="p-8 text-center text-gray-500 dark:text-gray-400">
               No articles found for "{query}"
             </div>
           )}
 
           {!query && (
-            <div className="p-8 text-center text-sm text-gray-500">
+            <div className="p-8 text-center text-sm text-gray-500 dark:text-gray-400">
               Start typing to search articles...
             </div>
           )}
