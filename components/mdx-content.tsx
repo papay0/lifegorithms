@@ -4,6 +4,7 @@ import { MDXRemote, MDXRemoteSerializeResult } from "next-mdx-remote";
 import Image from "next/image";
 import Link from "next/link";
 import { HeadingWithLink } from "./heading-with-link";
+import { ImageGrid } from "./image-grid";
 
 const components = {
   img: (props: any) => (
@@ -74,6 +75,7 @@ const components = {
     <td className="px-4 py-2 border-t border-gray-200 dark:border-gray-700 text-gray-700 dark:text-gray-300" {...props} />
   ),
   hr: (props: any) => <hr className="my-8 border-gray-300 dark:border-gray-700" {...props} />,
+  ImageGrid: ImageGrid,
 };
 
 interface MDXContentProps {
