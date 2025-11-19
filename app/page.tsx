@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { getPostsByYear, getAllPosts } from "@/lib/posts";
 import { Search } from "@/components/search";
+import { ThemeToggle } from "@/components/theme-toggle";
 
 export default function Home() {
   const postsByYear = getPostsByYear();
@@ -9,7 +10,7 @@ export default function Home() {
   const years = Object.keys(postsByYear).sort((a, b) => parseInt(b) - parseInt(a));
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-blue-50 via-white to-blue-50">
+    <div className="min-h-screen bg-gradient-to-b from-blue-50 via-white to-blue-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
       {/* Hero Section */}
       <div className="relative h-64 w-full overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-r from-blue-400 to-blue-600 opacity-90" />
@@ -24,14 +25,19 @@ export default function Home() {
 
       {/* Main Content */}
       <div className="mx-auto max-w-4xl px-6 py-12">
+        {/* Theme Toggle */}
+        <div className="flex justify-end mb-8">
+          <ThemeToggle />
+        </div>
+
         {/* Profile Section */}
         <div className="mb-16 flex items-start gap-6">
           <div className="flex h-20 w-20 items-center justify-center rounded-full bg-blue-500 text-4xl shadow-lg">
             👋
           </div>
           <div>
-            <h1 className="mb-2 text-4xl font-bold text-gray-900">Lifegorithms</h1>
-            <p className="text-lg text-gray-600">
+            <h1 className="mb-2 text-4xl font-bold text-gray-900 dark:text-gray-100">Lifegorithms</h1>
+            <p className="text-lg text-gray-600 dark:text-gray-300">
               Personal blog by{" "}
               <a
                 href="https://mobile.twitter.com/papay0"
@@ -42,7 +48,8 @@ export default function Home() {
                 Arthur Papailhau
               </a>
             </p>
-            <p className="text-gray-600">Software Engineer @Uber (Eats)</p>
+            <p className="text-gray-600 dark:text-gray-400">Former Software Engineer @Uber (Eats) & Meta AI</p>
+            <p className="text-gray-600 dark:text-gray-400">Currently building my own startup</p>
           </div>
         </div>
 
@@ -53,17 +60,17 @@ export default function Home() {
 
         {/* Articles Section */}
         <div>
-          <h2 className="mb-8 text-3xl font-bold text-gray-900">Articles</h2>
+          <h2 className="mb-8 text-3xl font-bold text-gray-900 dark:text-gray-100">Articles</h2>
 
           {years.map((year) => (
             <div key={year} className="mb-12">
-              <h3 className="mb-6 text-2xl font-semibold text-gray-800">{year}</h3>
+              <h3 className="mb-6 text-2xl font-semibold text-gray-800 dark:text-gray-200">{year}</h3>
               <div className="space-y-3">
                 {postsByYear[year].map((post) => (
                   <Link
                     key={post.slug}
                     href={`/blog/${year}/${post.slug}`}
-                    className="group block rounded-lg border border-gray-200 bg-white p-5 transition-all hover:border-blue-300 hover:shadow-md"
+                    className="group block rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 p-5 transition-all hover:border-blue-300 dark:hover:border-blue-500 hover:shadow-md"
                   >
                     <div className="flex items-start gap-4">
                       {post.emoji && (
@@ -72,15 +79,15 @@ export default function Home() {
                         </span>
                       )}
                       <div className="flex-1">
-                        <h4 className="text-lg font-medium text-gray-900 group-hover:text-blue-600 transition-colors">
+                        <h4 className="text-lg font-medium text-gray-900 dark:text-gray-100 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
                           {post.title}
                         </h4>
                         {post.description && (
-                          <p className="mt-1 text-sm text-gray-600">
+                          <p className="mt-1 text-sm text-gray-600 dark:text-gray-400">
                             {post.description}
                           </p>
                         )}
-                        <div className="mt-2 flex items-center gap-3 text-xs text-gray-500">
+                        <div className="mt-2 flex items-center gap-3 text-xs text-gray-500 dark:text-gray-500">
                           <time dateTime={post.date}>
                             {new Date(post.date).toLocaleDateString("en-US", {
                               month: "long",

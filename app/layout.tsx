@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import { ToasterProvider } from "@/components/toaster-provider";
+import { ThemeProvider } from "@/components/theme-provider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -14,11 +16,11 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "Lifegorithms | Arthur Papailhau",
-  description: "Personal blog by Arthur Papailhau, Software Engineer at Uber (Eats). Sharing insights on technology, life, and personal growth.",
+  description: "Personal blog by Arthur Papailhau, former Software Engineer at Uber (Eats) and Meta AI, currently building my own startup. Sharing insights on technology, entrepreneurship, and personal growth.",
   metadataBase: new URL("https://lifegorithms.com"),
   openGraph: {
     title: "Lifegorithms",
-    description: "Personal blog by Arthur Papailhau, Software Engineer at Uber (Eats)",
+    description: "Personal blog by Arthur Papailhau, former Software Engineer at Uber (Eats) and Meta AI, currently building my own startup",
     type: "website",
     locale: "en_US",
     siteName: "Lifegorithms",
@@ -26,7 +28,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Lifegorithms",
-    description: "Personal blog by Arthur Papailhau, Software Engineer at Uber (Eats)",
+    description: "Personal blog by Arthur Papailhau, former Software Engineer at Uber (Eats) and Meta AI, currently building my own startup",
     creator: "@papay0",
   },
 };
@@ -37,11 +39,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        {children}
+        <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
+          {children}
+          <ToasterProvider />
+        </ThemeProvider>
       </body>
     </html>
   );
