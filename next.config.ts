@@ -7,6 +7,14 @@ const nextConfig: NextConfig = {
         protocol: "https",
         hostname: "images.unsplash.com",
       },
+      {
+        protocol: "https",
+        hostname: "media2.giphy.com",
+      },
+      {
+        protocol: "https",
+        hostname: "media3.giphy.com",
+      },
     ],
   },
   experimental: {
