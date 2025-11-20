@@ -24,12 +24,21 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_US",
     siteName: "Lifegorithms",
+    images: [
+      {
+        url: "/api/og",
+        width: 1200,
+        height: 630,
+        alt: "Lifegorithms",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "Lifegorithms",
     description: "Personal blog by Arthur Papailhau, former Software Engineer at Uber (Eats) and Meta AI, currently building my own startup",
     creator: "@papay0",
+    images: ["/api/og"],
   },
 };
 
