@@ -4,6 +4,7 @@ import { getAllPosts, getPostBySlug } from "@/lib/posts";
 import { MDXContent } from "@/components/mdx-content";
 import { ScrollToAnchor } from "@/components/scroll-to-anchor";
 import { ThemeToggle } from "@/components/theme-toggle";
+import { ReadingProgress } from "@/components/reading-progress";
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
 import remarkGfm from "remark-gfm";
@@ -103,7 +104,9 @@ export default async function BlogPost({
   });
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-blue-50 via-white to-blue-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
+    <>
+      <ReadingProgress />
+      <div className="min-h-screen bg-gradient-to-b from-blue-50 via-white to-blue-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
       <ScrollToAnchor />
       <article className="mx-auto max-w-3xl px-6 py-12">
         {/* Top bar with back button and theme toggle */}
@@ -174,5 +177,6 @@ export default async function BlogPost({
         </footer>
       </article>
     </div>
+    </>
   );
 }
