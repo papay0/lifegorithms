@@ -1,7 +1,7 @@
 import { notFound } from "next/navigation";
 import { serialize } from "next-mdx-remote/serialize";
 import { getAllPosts, getPostBySlug } from "@/lib/posts";
-import { MDXContent } from "@/components/mdx-content";
+import { MDXWrapper } from "@/components/mdx-wrapper";
 import { ScrollToAnchor } from "@/components/scroll-to-anchor";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { ReadingProgress } from "@/components/reading-progress";
@@ -166,7 +166,7 @@ export default async function BlogPost({
 
         {/* Post content */}
         <div className="prose prose-lg max-w-none">
-          <MDXContent source={mdxSource} />
+          <MDXWrapper source={mdxSource} />
         </div>
 
         {/* Footer */}
