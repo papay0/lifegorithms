@@ -49,6 +49,10 @@ export async function generateMetadata({
   return {
     title: `${post.title} | Lifegorithms`,
     description: post.description || post.title,
+    robots: {
+      index: true,
+      follow: true,
+    },
     openGraph: {
       title: post.title,
       description: post.description || post.title,
