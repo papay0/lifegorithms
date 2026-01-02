@@ -6,9 +6,9 @@ export async function GET(request: Request) {
   try {
     const { searchParams } = new URL(request.url);
 
-    const title = searchParams.get('title') || 'Lifegorithms';
-    const emoji = searchParams.get('emoji') || '✨';
-    const description = searchParams.get('description') || 'Stories • Insights • Adventures';
+    const title = decodeURIComponent(searchParams.get('title') || 'Lifegorithms');
+    const emoji = decodeURIComponent(searchParams.get('emoji') || '✨');
+    const description = decodeURIComponent(searchParams.get('description') || 'Stories • Insights • Adventures');
 
     return new ImageResponse(
       (
