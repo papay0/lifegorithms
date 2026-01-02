@@ -37,7 +37,7 @@ export async function generateMetadata({
   }
 
   // Generate OG image URL with post details
-  const ogImageUrl = new URL('/api/og', 'https://lifegorithms.com');
+  const ogImageUrl = new URL('/api/og', 'https://www.lifegorithms.com');
   ogImageUrl.searchParams.set('title', post.title);
   if (post.emoji) {
     ogImageUrl.searchParams.set('emoji', post.emoji);

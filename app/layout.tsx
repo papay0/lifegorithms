@@ -17,7 +17,7 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Lifegorithms | Arthur Papailhau",
   description: "Personal blog by Arthur Papailhau, former Software Engineer at Uber (Eats) and Meta AI, currently building my own startup. Sharing insights on technology, entrepreneurship, and personal growth.",
-  metadataBase: new URL("https://lifegorithms.com"),
+  metadataBase: new URL("https://www.lifegorithms.com"),
   openGraph: {
     title: "Lifegorithms",
     description: "Personal blog by Arthur Papailhau, former Software Engineer at Uber (Eats) and Meta AI, currently building my own startup",
