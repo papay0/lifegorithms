@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { HeadingWithLink } from "./heading-with-link";
 import { ImageGrid } from "./image-grid";
+import { VideoPlayer } from "./video-player";
 
 const components = {
   img: (props: any) => (
@@ -76,6 +77,7 @@ const components = {
   ),
   hr: (props: any) => <hr className="my-8 border-gray-300 dark:border-gray-700" {...props} />,
   ImageGrid: ImageGrid,
+  VideoPlayer: VideoPlayer,
 };
 
 interface MDXContentProps {
