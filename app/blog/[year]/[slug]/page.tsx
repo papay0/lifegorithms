@@ -89,6 +89,9 @@ export default async function BlogPost({
   }
 
   const mdxSource = await serialize(post.content, {
+    // Trusted repository MDX uses literal expressions for image-grid props.
+    blockJS: false,
+    blockDangerousJS: true,
     mdxOptions: {
       remarkPlugins: [remarkGfm],
       rehypePlugins: [
