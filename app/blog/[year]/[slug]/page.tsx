@@ -11,16 +11,15 @@ import remarkGfm from "remark-gfm";
 import rehypeSlug from "rehype-slug";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
 
-// Disable static generation for now due to build issues
-// export async function generateStaticParams() {
-//   const posts = getAllPosts();
-//   return posts.map((post) => ({
-//     year: post.year,
-//     slug: post.slug,
-//   }));
-// }
+// Posts are bundled with each deployment; compile their MDX once at build time.
+export function generateStaticParams() {
+  return getAllPosts().map((post) => ({
+    year: post.year,
+    slug: post.slug,
+  }));
+}
 
-export const dynamicParams = true;
+export const dynamicParams = false;
 
 export async function generateMetadata({
   params,
@@ -90,6 +89,9 @@ export default async function BlogPost({
   }
 
   const mdxSource = await serialize(post.content, {
+    // Trusted repository MDX uses literal expressions for image-grid props.
+    blockJS: false,
+    blockDangerousJS: true,
     mdxOptions: {
       remarkPlugins: [remarkGfm],
       rehypePlugins: [
