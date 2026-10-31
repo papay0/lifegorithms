@@ -1,6 +1,7 @@
 import { notFound } from "next/navigation";
 import { serialize } from "next-mdx-remote/serialize";
 import { getAllPosts, getPostBySlug } from "@/lib/posts";
+import { getPostOgImage } from "@/lib/og-images";
 import { MDXWrapper } from "@/components/mdx-wrapper";
 import { ScrollToAnchor } from "@/components/scroll-to-anchor";
 import { ThemeToggle } from "@/components/theme-toggle";
@@ -35,15 +36,7 @@ export async function generateMetadata({
     };
   }
 
-  // Generate OG image URL with post details
-  const ogImageUrl = new URL('/api/og', 'https://www.lifegorithms.com');
-  ogImageUrl.searchParams.set('title', post.title);
-  if (post.emoji) {
-    ogImageUrl.searchParams.set('emoji', post.emoji);
-  }
-  if (post.description) {
-    ogImageUrl.searchParams.set('description', post.description);
-  }
+  const ogImageUrl = new URL(getPostOgImage(post).url, 'https://www.lifegorithms.com');
 
   return {
     title: `${post.title} | Lifegorithms`,

@@ -4,6 +4,7 @@ import "./globals.css";
 import { ToasterProvider } from "@/components/toaster-provider";
 import { ThemeProvider } from "@/components/theme-provider";
 import { Analytics } from "@vercel/analytics/next";
+import { getDefaultOgImage } from "@/lib/og-images";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -27,7 +28,7 @@ export const metadata: Metadata = {
     siteName: "Lifegorithms",
     images: [
       {
-        url: "/api/og",
+        url: getDefaultOgImage().url,
         width: 1200,
         height: 630,
         alt: "Lifegorithms",
@@ -39,7 +40,7 @@ export const metadata: Metadata = {
     title: "Lifegorithms",
     description: "Personal blog by Arthur Papailhau, former Software Engineer at Uber (Eats) and Meta AI, currently building my own startup",
     creator: "@papay0",
-    images: ["/api/og"],
+    images: [getDefaultOgImage().url],
   },
 };
 
